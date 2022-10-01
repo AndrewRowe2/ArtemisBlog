@@ -14,28 +14,13 @@ namespace ArtemisBlog.Feed
         LastWeek,
         TwoWeeksAgo,
         ThreeWeeksAgo,
+        EarlierThisMonth,
         LastMonth,
         Older
     }
 
     static class SyndicationItemExtensions
     {
-        private static readonly DateTime lastMonday;
-
-        static SyndicationItemExtensions()
-        {
-            DateTime today = DateTime.Today;
-
-            if (today.DayOfWeek == DayOfWeek.Monday)
-            {
-                lastMonday = today;
-            }
-            else
-            {
-                lastMonday = LastDay(today, DayOfWeek.Monday);
-            }
-        }
-
         private static DateTime LastDay(DateTime start, DayOfWeek dayOfWeek)
         {
             int current = (int)start.DayOfWeek;
@@ -49,6 +34,20 @@ namespace ArtemisBlog.Feed
                 offset -= 7;
 
             return start.AddDays(offset);
+        }
+
+        private static DateTime LastMonday()
+        {
+            DateTime today = DateTime.Today;
+
+            if (today.DayOfWeek == DayOfWeek.Monday)
+            {
+                return today;
+            }
+            else
+            {
+                return LastDay(today, DayOfWeek.Monday);
+            }
         }
 
         private static DateTime LastMonth()
@@ -68,7 +67,10 @@ namespace ArtemisBlog.Feed
             {
                 return Feed.PublishedPeriod.Yesterday;
             }
-            else if (published >= lastMonday)
+
+            DateTime lastMonday = LastMonday();
+
+            if (published >= lastMonday)
             {
                 // Relies on the order of the elements of the PublishedPeriod enum
                 return (PublishedPeriod)(7 - (int)published.DayOfWeek);
@@ -84,6 +86,10 @@ namespace ArtemisBlog.Feed
             else if (published >= lastMonday.AddDays(-21))
             {
                 return Feed.PublishedPeriod.ThreeWeeksAgo;
+            }
+            else if (published >= lastMonday.AddDays(-28))
+            {
+                return Feed.PublishedPeriod.EarlierThisMonth;
             }
             else if (published >= LastMonth())
             {

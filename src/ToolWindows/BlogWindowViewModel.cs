@@ -95,6 +95,17 @@ namespace ArtemisBlog.ToolWindows
         {
             get
             {
+                string lastRefreshed;
+
+                if (feedMonitor.LastRefreshed.Date == DateTime.Today)
+                {
+                    lastRefreshed = feedMonitor.LastRefreshed.ToString("t");
+                }
+                else
+                {
+                    lastRefreshed = Legends.NoneToday;
+                }
+
                 string nextRefresh;
 
                 if (feedMonitor.RefreshAutomatically)
@@ -106,7 +117,7 @@ namespace ArtemisBlog.ToolWindows
                     nextRefresh = Legends.Manual;
                 }
 
-                return $"{Legends.LastRefreshed}: {feedMonitor.LastRefreshed:t}\r\n{Legends.NextRefresh}: {nextRefresh}";
+                return $"{Legends.LastRefreshed}: {lastRefreshed}\r\n{Legends.NextRefresh}: {nextRefresh}";
             }
         }
 

@@ -54,6 +54,7 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Options\IRefreshOptions.cs" />
     <Compile Include="Options\RefreshOptionsEventArgs.cs" />
+    <Compile Include="Options\SettingsManager.cs" />
     <Compile Include="ToolWindows\ViewModel.cs" />
     <Compile Include="Options\GeneralOptions.cs">
       <SubType>Component</SubType>

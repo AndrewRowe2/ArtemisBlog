@@ -21,7 +21,7 @@ namespace ArtemisBlog.Feed
         private IVsTask monitorTask;
         private bool started;
 
-        internal FeedMonitor(HttpFeedReader onlineFeed, FeedFile localFeed, IRefreshOptions options)
+        internal FeedMonitor(HttpFeedReader onlineFeed, FeedFile localFeed, IRefreshOptions options, DateTime lastRefreshed)
         {
             this.onlineFeed = onlineFeed;
             this.localFeed = localFeed;
@@ -32,6 +32,8 @@ namespace ArtemisBlog.Feed
                 refreshAutomatically = options.RefreshAutomatically;
                 refreshInterval = options.RefreshInterval;
             }
+
+            LastRefreshed = lastRefreshed;
         }
 
         private void DoRefreshOptionsChanged()
@@ -98,7 +100,7 @@ namespace ArtemisBlog.Feed
             {
                 started = true;
 
-                if (RefreshOnStartup)
+                if (RefreshOnStartup && DateTime.Now.Date > LastRefreshed.Date)
                 {
                     await RefreshFeedAsync(cancellationToken);
                 }

@@ -25,9 +25,5 @@ You can decide how often (or if) you want the feed refreshed from the standard *
 
 ![Settings](art/options.png)
 
-### Known Issues
-
-Uninstalling the extension does not completely remove everything. File Feed.xml remains in folder %ProgramData%\Artemis Blog and the registry entries that store the refresh options aren't removed.
-
 ## License
 [Apache 2.0](LICENSE)

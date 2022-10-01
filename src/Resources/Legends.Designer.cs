@@ -61,6 +61,15 @@ namespace ArtemisBlog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Earlier This Month.
+        /// </summary>
+        public static string EarlierThisMonth {
+            get {
+                return ResourceManager.GetString("EarlierThisMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 5 minutes.
         /// </summary>
         public static string FiveMinutes {
@@ -160,6 +169,15 @@ namespace ArtemisBlog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None today.
+        /// </summary>
+        public static string NoneToday {
+            get {
+                return ResourceManager.GetString("NoneToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Older.
         /// </summary>
         public static string Older {
@@ -205,7 +223,7 @@ namespace ArtemisBlog.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Refresh on startup.
+        ///   Looks up a localized string similar to Refresh on first startup of the day.
         /// </summary>
         public static string RefreshOnStartup {
             get {
