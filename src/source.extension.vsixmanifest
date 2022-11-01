@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="a2b9575b-b0f2-417c-952f-42a5b95984b9" Version="1.0.1" Language="en-US" Publisher="Andrew Rowe" />
+        <Identity Id="a2b9575b-b0f2-417c-952f-42a5b95984b9" Version="1.0.2" Language="en-US" Publisher="Andrew Rowe" />
         <DisplayName>Artemis Blog</DisplayName>
         <Description xml:space="preserve">Displays entries from NASA's Artemis mission blog.</Description>
         <MoreInfo>https://github.com/AndrewRowe2/ArtemisBlog</MoreInfo>

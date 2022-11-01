@@ -50,9 +50,15 @@ namespace ArtemisBlog.Feed
             }
         }
 
-        private static DateTime LastMonth()
+        private static DateTime BeginningOfThisMonth()
         {
-            return DateTime.Today.AddDays(DateTime.Today.Day * -1).AddMonths(-1);
+            DateTime today = DateTime.Today;
+
+            return new DateTime(today.Year, today.Month, 1);
+        }
+        private static DateTime BeginningOfLastMonth()
+        {
+            return BeginningOfThisMonth().AddMonths(-1);
         }
 
         internal static PublishedPeriod PublishedPeriod(this SyndicationItem syndicationItem)
@@ -89,9 +95,18 @@ namespace ArtemisBlog.Feed
             }
             else if (published >= lastMonday.AddDays(-28))
             {
-                return Feed.PublishedPeriod.EarlierThisMonth;
+                /* 
+                 * More than 21 days ago, but less than 28 days ago may be in the
+                 * current month, but will more usually be in the previous month
+                 */
+                if (published >= BeginningOfThisMonth())
+                {
+                    return Feed.PublishedPeriod.EarlierThisMonth;
+                }
+
+                return Feed.PublishedPeriod.LastMonth;
             }
-            else if (published >= LastMonth())
+            else if (published >= BeginningOfLastMonth())
             {
                 return Feed.PublishedPeriod.LastMonth;
             }

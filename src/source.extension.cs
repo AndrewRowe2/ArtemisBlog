@@ -11,7 +11,7 @@ namespace ArtemisBlog
         public const string Name = "Artemis Blog";
         public const string Description = @"Displays entries from NASA's Artemis mission blog.";
         public const string Language = "en-US";
-        public const string Version = "1.0.1";
+        public const string Version = "1.0.2";
         public const string Author = "Andrew Rowe";
         public const string Tags = "nasa,rss,artemis";
     }
